@@ -7,4 +7,15 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'GLAFront';
+
+  private _conn: boolean;
+
+  constructor() {
+    this._conn = false;
+  }
+
+  get conn(): boolean {
+    return this._conn;
+  }
+
 }
