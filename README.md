@@ -1,27 +1,50 @@
 # GLAFront
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.2.
+Front-end application for the Spring course project, 2020-2021.
 
-## Development server
+## Team
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Emilien Lambert  
+Dylan Li-Cho  
+Maxime Nicolas  
+Nicolas Kleinhentz
 
-## Code scaffolding
+## Installation
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+First, clone this repo using a terminal :
 
-## Build
+```shell
+$ git clone https://github.com/Dylanlicho/GLAFront.git
+```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+Then got into the cloned project :
 
-## Running unit tests
+```shell
+$ cd GLAFront
+```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Before launching the application, you will need to install the required dependencies :
 
-## Running end-to-end tests
+```shell
+$ yarn install
+```
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+Finally you can launch the application :
 
-## Further help
+```shell
+$ ng serve
+```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+The front-end will be running at http://localhost:4200/ .
+
+To stop the application, simply use Ctrl+C or Cmd+C.
+
+To delete the repository, first make sure that the application is stopped, then move to the parent folder and you will be able to delete the project :
+
+```shell
+$ cd ..
+$ rm -rf GLAFront
+```
+## Related repositories
+
+The back-end application is located at https://github.com/Dylanlicho/GLABackSpring .
