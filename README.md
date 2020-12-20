@@ -45,6 +45,11 @@ To delete the repository, first make sure that the application is stopped, then 
 $ cd ..
 $ rm -rf GLAFront
 ```
+
+## Notes
+
+An article is biddable if the date of today is between the startDate and endDate of the article.
+
 ## Related repositories
 
 The back-end application is located at https://github.com/Dylanlicho/GLABackSpring .

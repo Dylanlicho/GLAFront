@@ -1,11 +1,18 @@
-<mat-card>
-  <mat-card-title> Enchère </mat-card-title>
-  <mat-card-subtitle>	par Quelqu'un </mat-card-subtitle>
-  <mat-card-content> Vend machin, bon état, ayant appartenu au duc JeSaisPasLequel </mat-card-content>
-  <mat-card-actions>
-    <button mat-icon-button aria-label="Utilisateurs" [routerLink]="['/bid/1']">
-      <mat-icon>remove_red_eye</mat-icon>
-    </button>
-  </mat-card-actions>
-  <mat-card-footer> </mat-card-footer>
-</mat-card>
+<div class="card">
+  <mat-card>
+    <mat-card-title> {{bid['name']}} </mat-card-title>
+    <mat-card-subtitle>	Vendu par {{seller['firstname']}} {{seller['lastname']}} </mat-card-subtitle>
+    <mat-card-content>
+      Début : {{bid['startDate'] | date:'short'}} <br/>
+      Prix de départ : {{bid['startPrice']}} € <br/>
+      Prix actuel : {{bid['price']}} €
+    </mat-card-content>
+    <mat-card-actions *ngIf="isBiddable">
+      <mat-icon>attach_money</mat-icon>
+    </mat-card-actions>
+    <mat-card-actions *ngIf="!isBiddable">
+      <mat-icon>money_off</mat-icon>
+    </mat-card-actions>
+    <mat-card-footer> Fin : {{bid['endDate'] | date:'short'}} </mat-card-footer>
+  </mat-card>
+</div>
