@@ -1,4 +1,4 @@
-# GLAFront
+# apde-front-spring
 
 Front-end application for the Spring course project, 2020-2021.
 
@@ -14,13 +14,13 @@ Nicolas Kleinhentz
 First, clone this repo using a terminal :
 
 ```shell
-$ git clone https://github.com/Dylanlicho/GLAFront.git
+$ git clone https://github.com/Dylanlicho/apde-front-spring.git
 ```
 
 Then got into the cloned project :
 
 ```shell
-$ cd GLAFront
+$ cd apde-front-spring
 ```
 
 Before launching the application, you will need to install the required dependencies :
@@ -43,7 +43,7 @@ To delete the repository, first make sure that the application is stopped, then 
 
 ```shell
 $ cd ..
-$ rm -rf GLAFront
+$ rm -rf apde-front-spring
 ```
 
 ## Notes
@@ -52,4 +52,4 @@ An article is biddable if the date of today is between the startDate and endDate
 
 ## Related repositories
 
-The back-end application is located at https://github.com/Dylanlicho/GLABackSpring .
+The back-end application is located at https://github.com/Dylanlicho/apde-back-spring .
