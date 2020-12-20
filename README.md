@@ -1,4 +1,4 @@
-# GLAFront
+# apde-front-spring
 
 Front-end application for the Spring course project, 2020-2021.
 
