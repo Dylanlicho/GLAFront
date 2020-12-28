@@ -1,22 +1,32 @@
-<form>
+<form [formGroup]="form">
   <mat-label>Connexion</mat-label>
 
-  <br/>
+  <br/><br/>
 
-  <mat-form-field appearance="outline">
-    <mat-label>Champs1</mat-label>
-    <input matInput />
+  <mat-form-field appearance="fill">
+    <mat-label>Login</mat-label>
+    <input matInput formControlName="login" minlength="2" required/>
   </mat-form-field>
 
   <br/>
 
-  <mat-form-field appearance="outline">
-    <mat-label>Champs2</mat-label>
-    <input matInput />
+  <mat-form-field appearance="fill">
+    <mat-label>Password</mat-label>
+    <input matInput formControlName="password" minlength="2" [type]="hide ? 'password' : 'text'" required>
+    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+      <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+    </button>
   </mat-form-field>
 
   <br/>
 
-  <button mat-stroked-button>Annuler</button>
-  <button mat-stroked-button>S'inscrire</button>
+  <button mat-stroked-button (click)="cancel()">Annuler</button>
+  <button mat-stroked-button color="primary" type="submit" (click)="submit(form.value)">S'inscrire</button>
 </form>
+
+<br/><br/>
+
+<p> -- TEST </p>
+
+<input #logintest type="text" name="login"/>
+<button (click)="cookieTest(logintest.value)">SET COOKIE</button>

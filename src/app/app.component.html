@@ -17,11 +17,15 @@
     <mat-icon>new_releases</mat-icon>
   </button>
 
-  <button mat-icon-button aria-label="Connexion" *ngIf="!conn" [routerLink]="['/login']">
+  <button mat-icon-button aria-label="Connexion" *ngIf="!logged" [routerLink]="['/login']">
     <mat-icon>login</mat-icon>
   </button>
 
-  <button mat-icon-button aria-label="Inscription" *ngIf="!conn" [routerLink]="['/signup']">
+  <button mat-icon-button aria-label="Déconnexion" *ngIf="logged" (click)="disconnect()">
+    <mat-icon>person_off</mat-icon>
+  </button>
+
+  <button mat-icon-button aria-label="Inscription" *ngIf="!logged" [routerLink]="['/signup']">
     <mat-icon>person_add_alt_1</mat-icon>
   </button>
 </mat-toolbar>

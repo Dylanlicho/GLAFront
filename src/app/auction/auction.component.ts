@@ -10,7 +10,7 @@ import {BidService} from '../shared/services/bid.service';
 export class AuctionComponent implements OnInit {
 
   private _bids: Bid[];
-  displayedColumns: string[] = ['nom', 'prix', 'dateDepart', 'dateFin', 'info', 'modifier', 'supprimer'];
+  displayedColumns: string[] = ['nom', 'prix', 'dateDepart', 'dateFin', 'info'];
 
   constructor(private _bidService: BidService) {
     this._bids = [];

@@ -1,1 +1,2 @@
-<p> Accueil et tout t'as vu </p>
+<p *ngIf="!logged"> Vous êtes un visiteur anonyme </p>
+<p *ngIf="logged"> Connecté en tant que {{username}} </p>

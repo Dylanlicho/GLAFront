@@ -22,6 +22,8 @@ import {BidService} from './shared/services/bid.service';
 import {HttpClientModule} from '@angular/common/http';
 import {DatePipe, registerLocaleData} from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
+import {ReactiveFormsModule} from '@angular/forms';
+import {CookieService} from 'ngx-cookie-service';
 
 registerLocaleData(localeFr, 'fr');
 
@@ -47,11 +49,13 @@ registerLocaleData(localeFr, 'fr');
     MatIconModule,
     MatToolbarModule,
     MatTableModule,
+    ReactiveFormsModule,
   ],
   providers: [
     UserService,
     BidService,
     DatePipe,
+    CookieService,
     {provide: LOCALE_ID, useValue: 'fr-FR'}
   ],
   bootstrap: [AppComponent]

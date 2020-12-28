@@ -37,7 +37,7 @@ export class UserService {
   }
 
   create(user: User): Observable<any> {
-    return this._http.post<User>(this._backendURL.allUsers, user, this._options());
+    return this._http.post<User>(this._backendURL.addUser, user, this._options());
   }
 
   update(id: string, user: User): Observable<any> {

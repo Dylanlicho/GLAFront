@@ -48,7 +48,23 @@ $ rm -rf apde-front-spring
 
 ## Notes
 
-An article is biddable if the date of today is between the startDate and endDate of the article.
+### Bidding
+An article is biddable if :
+- startDate < today < endDate
+- user is connected
+- connected user is not the article's seller
+
+### Register (Signup)
+Registering a new account is fully functional, you will need to enter your firstname, lastname, address, login and password. Do note that the address is optional.
+
+### Logging in
+The login function is not working. In order to try the different functionalities you can access the login page and "log in" as any (existing or not) user without even knowing the corresponding password (-- TEST area).  
+Being logged in provides :
+- Replaces the 'Login' and 'Signup' buttons with a 'Disconnect' one in the top nav bar.  
+- When viewing a specific bid, if you are logged as the seller of the item you will see an 'edit' button appear as well as a 'delete' one.
+- A bid is not biddable by its own seller.
+
+The home page displays your login name if you are connected.
 
 ## Related repositories
 

@@ -7,11 +7,11 @@
       Prix de départ : {{bid['startPrice']}} € <br/>
       Prix actuel : {{bid['price']}} €
     </mat-card-content>
-    <mat-card-actions *ngIf="isBiddable">
-      <mat-icon>attach_money</mat-icon>
-    </mat-card-actions>
-    <mat-card-actions *ngIf="!isBiddable">
-      <mat-icon>money_off</mat-icon>
+    <mat-card-actions >
+      <mat-icon *ngIf="isOwner">edit</mat-icon>
+      <mat-icon *ngIf="isBiddable">attach_money</mat-icon>
+      <mat-icon *ngIf="!isBiddable">money_off</mat-icon>
+      <mat-icon *ngIf="isOwner">delete</mat-icon>
     </mat-card-actions>
     <mat-card-footer> Fin : {{bid['endDate'] | date:'short'}} </mat-card-footer>
   </mat-card>

@@ -25,16 +25,6 @@
     <td class="cell-right" mat-cell *matCellDef="let bid"> <button mat-icon-button [routerLink]="['/bid', bid.id]"><mat-icon>info</mat-icon></button> </td>
   </ng-container>
 
-  <ng-container class="cell-right" matColumnDef="modifier">
-    <th mat-header-cell *matHeaderCellDef></th>
-    <td class="cell-right" mat-cell *matCellDef="let bid"> <mat-icon>edit</mat-icon> </td>
-  </ng-container>
-
-  <ng-container class="cell-right" matColumnDef="supprimer">
-    <th mat-header-cell *matHeaderCellDef></th>
-    <td class="cell-right" mat-cell *matCellDef="let bid"> <mat-icon>delete</mat-icon> </td>
-  </ng-container>
-
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
 </table>
