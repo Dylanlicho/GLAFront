@@ -36,12 +36,12 @@ export class BidService {
     return this._http.get<Bid>(this._backendURL.oneArticle.replace(':id', id));
   }
 
-  create(user: Bid): Observable<any> {
-    return this._http.post<Bid>(this._backendURL.allArticles, user, this._options());
+  create(bid: Bid): Observable<any> {
+    return this._http.post<Bid>(this._backendURL.addArticle, bid, this._options());
   }
 
-  update(id: string, user: Bid): Observable<any> {
-    return this._http.put<Bid>(this._backendURL.oneArticle.replace(':id', id), user, this._options());
+  update(id: string, bid: Bid): Observable<any> {
+    return this._http.put<Bid>(this._backendURL.oneArticle.replace(':id', id), bid, this._options());
   }
 
   delete(id: string): Observable<string> {

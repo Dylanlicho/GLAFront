@@ -12,7 +12,7 @@ export class HomeComponent implements OnInit {
 
   constructor(private _cookieService: CookieService) {
     if (this.logged)
-      this._username = this._cookieService.get("login");
+      this._username = JSON.parse(this._cookieService.get("login"))['login'];
     else
       this._username = null;
   }

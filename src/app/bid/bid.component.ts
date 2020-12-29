@@ -24,11 +24,6 @@ export class BidComponent implements OnInit {
     this._seller = {} as User;
   }
 
-  get isOwner(): boolean {
-    //returns whether the user is the seller or not
-    return this._cookieService.check("login") && this._cookieService.get("login") == this._seller.login;
-  }
-
   get bid(): Bid {
     return this._bid;
   }
@@ -43,6 +38,23 @@ export class BidComponent implements OnInit {
     return today > this._datePipe.transform(this._bid.startDate, 'short') &&
       today < this._datePipe.transform(this._bid.endDate, 'short') &&
       !this.isOwner;
+  }
+
+  get isOwner(): boolean {
+    //returns whether the user is the seller or not
+    return this._cookieService.check("login") && JSON.parse(this._cookieService.get("login"))['id'] == this._seller.id;
+  }
+
+  get isEditable(): boolean {
+    //returns whether the bid is editable or not
+    //a bid is editable after it is ended
+    let today = this._datePipe.transform(new Date(), 'short');
+    return this._datePipe.transform(this._bid.endDate, 'short') < today;
+  }
+
+  isExpired(date: Date): boolean {
+    let today = new Date();
+    return this._datePipe.transform(date, 'short') < this._datePipe.transform(today, 'short');
   }
 
   ngOnInit(): void {

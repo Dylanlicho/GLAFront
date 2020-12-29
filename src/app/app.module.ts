@@ -24,6 +24,9 @@ import {DatePipe, registerLocaleData} from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
 import {ReactiveFormsModule} from '@angular/forms';
 import {CookieService} from 'ngx-cookie-service';
+import { CreateBidComponent } from './create-bid/create-bid.component';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule} from '@angular/material/core';
 
 registerLocaleData(localeFr, 'fr');
 
@@ -35,7 +38,8 @@ registerLocaleData(localeFr, 'fr');
     PromotionsComponent,
     BidComponent,
     LoginComponent,
-    SignupComponent
+    SignupComponent,
+    CreateBidComponent
   ],
   imports: [
     HttpClientModule,
@@ -50,6 +54,8 @@ registerLocaleData(localeFr, 'fr');
     MatToolbarModule,
     MatTableModule,
     ReactiveFormsModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
   ],
   providers: [
     UserService,

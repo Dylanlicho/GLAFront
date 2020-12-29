@@ -54,6 +54,11 @@ An article is biddable if :
 - user is connected
 - connected user is not the article's seller
 
+An article is editable if :
+- user is connected
+- connected user is the article'ss seller
+- endDate < today
+
 ### Register (Signup)
 Registering a new account is fully functional, you will need to enter your firstname, lastname, address, login and password. Do note that the address is optional.
 
@@ -64,7 +69,16 @@ Being logged in provides :
 - When viewing a specific bid, if you are logged as the seller of the item you will see an 'edit' button appear as well as a 'delete' one.
 - A bid is not biddable by its own seller.
 
-The home page displays your login name if you are connected.
+### "Login" cookie
+This cookie contains information about the logged-in user, saved as a JSON object containing all the data of that user according to the DB.
+- The user object is stored in the cookie using the *JSON.stringify* method
+- The user can be extracted from the cookie using the *JSON.parse* method
+
+### Creating a new bid
+When logged in, you'll be able to create a new bid. On the bid creation page you will be able to choose the name, starting price, weight, starting date and ending date of the bid. The 'seller' field of the bid will be automatically filled with your user ID and the 'price' field will be filled with the starting price value.
+
+### Available bids
+Available bids are listing in the auction page, their endDate is written in red when the date has passed.
 
 ## Related repositories
 

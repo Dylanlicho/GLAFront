@@ -36,6 +36,10 @@ export class UserService {
     return this._http.get<User>(this._backendURL.oneUser.replace(':id', id));
   }
 
+  fetchOneByLogin(login: string): Observable<User> {
+    return this._http.get<User>(this._backendURL.oneUserByLogin.replace(':login', login));
+  }
+
   create(user: User): Observable<any> {
     return this._http.post<User>(this._backendURL.addUser, user, this._options());
   }

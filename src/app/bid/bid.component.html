@@ -8,11 +8,14 @@
       Prix actuel : {{bid['price']}} €
     </mat-card-content>
     <mat-card-actions >
-      <mat-icon *ngIf="isOwner">edit</mat-icon>
+      <mat-icon *ngIf="isOwner && isEditable">edit</mat-icon>
       <mat-icon *ngIf="isBiddable">attach_money</mat-icon>
       <mat-icon *ngIf="!isBiddable">money_off</mat-icon>
       <mat-icon *ngIf="isOwner">delete</mat-icon>
     </mat-card-actions>
-    <mat-card-footer> Fin : {{bid['endDate'] | date:'short'}} </mat-card-footer>
+    <mat-card-footer>
+      <div style="color: red" *ngIf="isExpired(bid['endDate'])"> Fin : {{bid['endDate'] | date:'short'}} </div>
+      <div *ngIf="!isExpired(bid['endDate'])"> Fin : {{bid['endDate'] | date:'short'}} </div>
+    </mat-card-footer>
   </mat-card>
 </div>

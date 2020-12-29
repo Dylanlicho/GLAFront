@@ -4,35 +4,35 @@
   <br/><br/>
 
   <mat-form-field appearance="fill">
-    <mat-label>Firstname</mat-label>
+    <mat-label>Prénom</mat-label>
     <input matInput formControlName="firstname" minlength="2" required/>
   </mat-form-field>
 
   <br/>
 
   <mat-form-field appearance="fill">
-    <mat-label>Lastname</mat-label>
+    <mat-label>Nom</mat-label>
     <input matInput formControlName="lastname" minlength="2" required/>
   </mat-form-field>
 
   <br/>
 
   <mat-form-field appearance="fill">
-    <mat-label>Address</mat-label>
+    <mat-label>Adresse</mat-label>
     <input matInput formControlName="address" minlength="2"/>
   </mat-form-field>
 
   <br/>
 
   <mat-form-field appearance="fill">
-    <mat-label>Login</mat-label>
+    <mat-label>Pseudo</mat-label>
     <input matInput formControlName="login" minlength="2" required/>
   </mat-form-field>
 
   <br/>
 
   <mat-form-field appearance="fill">
-    <mat-label>Password</mat-label>
+    <mat-label>Mot de passe</mat-label>
     <input matInput formControlName="password" minlength="2" [type]="hide ? 'password' : 'text'" required>
     <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
       <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>

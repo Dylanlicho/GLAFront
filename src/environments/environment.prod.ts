@@ -7,9 +7,11 @@ export const environment = {
     endpoints: {
       allUsers: '/users',
       oneUser: '/user/:id',
+      oneUserByLogin: '/user/login/:login',
       addUser: '/addUser',
       allArticles: '/articles',
       oneArticle: '/article/:id',
+      addArticle: '/addArticle',
     }
   }
 };

@@ -1,0 +1,47 @@
+<form [formGroup]="form">
+  <mat-label>Nouvelle enchère</mat-label>
+
+  <br/><br/>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Nom</mat-label>
+    <input matInput formControlName="name" minlength="2" required/>
+  </mat-form-field>
+
+  <br/>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Prix de départ</mat-label>
+    <input matInput type="number" formControlName="startPrice" min=".0" required/>
+  </mat-form-field>
+
+  <br/>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Date de départ</mat-label>
+    <input matInput formControlName="startDate" [matDatepicker]="picker" required>
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+
+  <br/>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Date de fin</mat-label>
+    <input matInput formControlName="endDate" [matDatepicker]="picker2" required>
+    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+    <mat-datepicker #picker2></mat-datepicker>
+  </mat-form-field>
+
+  <br/>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Poids</mat-label>
+    <input matInput type="number" formControlName="weight" min=".0" required/>
+  </mat-form-field>
+
+  <br/>
+
+  <button mat-stroked-button (click)="cancel()">Annuler</button>
+  <button mat-stroked-button color="primary" type="submit" (click)="submit(form.value)">Ajouter l'enchère</button>
+</form>

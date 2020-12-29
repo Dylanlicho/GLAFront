@@ -3,6 +3,9 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {Login} from '../shared/interfaces/login';
 import {CookieService} from 'ngx-cookie-service';
+import {UserService} from '../shared/services/user.service';
+import {User} from '../shared/interfaces/user';
+import {HttpErrorResponse} from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +18,7 @@ export class LoginComponent implements OnInit {
 
   private _form: FormGroup;
 
-  constructor(private _router: Router, private _cookieService: CookieService) {
+  constructor(private _router: Router, private _cookieService: CookieService, private _userService: UserService) {
     this._form = this._buildForm();
   }
 
@@ -27,8 +30,20 @@ export class LoginComponent implements OnInit {
   }
 
   cookieTest(login: string): void {
-    this._cookieService.set("login", login, 300);
-    this._router.navigate(['/home']);
+    if (this._cookieService.check("login"))
+      this._cookieService.delete("login");
+
+    this._userService.fetchOneByLogin(login)
+      .subscribe(
+        (user: User) => {
+          if (!!user) {
+            this._cookieService.set("login", JSON.stringify(user), 300);
+            this._router.navigate(['/home']);
+          }
+        }, (err: HttpErrorResponse) => {
+          console.log(err);
+        }
+      )
   }
 
   submit(login: Login): void {
