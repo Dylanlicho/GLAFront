@@ -3,12 +3,12 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import {Observable} from 'rxjs';
 import { defaultIfEmpty, filter, map } from 'rxjs/operators';
-import {Bid} from '../interfaces/bid';
+import {Participation} from '../interfaces/participation';
 
 @Injectable({
   providedIn: 'root'
 })
-export class BidService {
+export class ParticipationService {
   private readonly _backendURL: any;
 
   constructor(private _http: HttpClient) {
@@ -24,32 +24,32 @@ export class BidService {
     Object.keys(environment.backend.endpoints).forEach(k => this._backendURL[ k ] = `${baseUrl}${environment.backend.endpoints[ k ]}`);
   }
 
-  fetch(): Observable<Bid[]> {
-    return this._http.get<Bid[]>(this._backendURL.allArticles)
+  fetch(): Observable<Participation[]> {
+    return this._http.get<Participation[]>(this._backendURL.allUsers)
       .pipe(
         filter(_ => !!_),
         defaultIfEmpty([])
       );
   }
 
-  fetchOne(id: number): Observable<Bid> {
-    return this._http.get<Bid>(this._backendURL.oneArticle.replace(':id', id));
+  fetchOne(id: string): Observable<Participation> {
+    return this._http.get<Participation>(this._backendURL.oneUser.replace(':id', id));
   }
 
-  fetchBySeller(seller: number): Observable<Bid[]> {
-    return this._http.get<Bid[]>(this._backendURL.allArticlesBySeller.replace(':seller', seller));
+  fetchBest(idArticle: number): Observable<Participation> {
+    return this._http.get<Participation>(this._backendURL.bestParticipationByIdArticle.replace(':idArticle', idArticle));
   }
 
-  create(bid: Bid): Observable<any> {
-    return this._http.post<Bid>(this._backendURL.addArticle, bid, this._options());
+  create(participation: Participation): Observable<any> {
+    return this._http.post<Participation>(this._backendURL.createParticipation, participation, this._options());
   }
 
-  update(id: number, bid: Bid): Observable<any> {
-    return this._http.put<Bid>(this._backendURL.oneArticle.replace(':id', id), bid, this._options());
+  update(id: string, participation: Participation): Observable<any> {
+    return this._http.put<Participation>(this._backendURL.oneUser.replace(':id', id), participation, this._options());
   }
 
-  delete(id: number): Observable<number> {
-    return this._http.delete(this._backendURL.deleteArticle.replace(':id', id), this._options())
+  delete(id: string): Observable<string> {
+    return this._http.delete(this._backendURL.oneUser.replace(':id', id), this._options())
       .pipe(
         map(_ => id)
       );

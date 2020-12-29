@@ -7,6 +7,7 @@ import {BidComponent} from './bid/bid.component';
 import {LoginComponent} from './login/login.component';
 import {SignupComponent} from './signup/signup.component';
 import {CreateBidComponent} from './create-bid/create-bid.component';
+import {MyAuctionComponent} from './my-auction/my-auction.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -16,7 +17,8 @@ const routes: Routes = [
   { path: 'promotions', component: PromotionsComponent },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
-  { path: 'createBid', component: CreateBidComponent }
+  { path: 'createBid', component: CreateBidComponent },
+  { path: 'myAuction', component: MyAuctionComponent }
 ];
 
 @NgModule({

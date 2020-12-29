@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import {Bid} from '../shared/interfaces/bid';
 import {BidService} from '../shared/services/bid.service';
 import {CookieService} from 'ngx-cookie-service';
-import {DatePipe} from '@angular/common';
 
 @Component({
   selector: 'app-auction',
@@ -15,13 +14,13 @@ export class AuctionComponent implements OnInit {
 
   private _bids: Bid[];
 
-  constructor(private _bidService: BidService, private _cookieService: CookieService, private _datePipe: DatePipe) {
+  constructor(private _bidService: BidService, private _cookieService: CookieService) {
     this._bids = [];
   }
 
   isExpired(date: Date): boolean {
     let today = new Date();
-    return this._datePipe.transform(date, 'short') < this._datePipe.transform(today, 'short');
+    return (new Date(date)).getTime() < today.getTime();
   }
 
   logged(): boolean {

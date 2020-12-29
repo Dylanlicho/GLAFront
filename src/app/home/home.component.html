@@ -1,2 +1,6 @@
 <p *ngIf="!logged"> Vous êtes un visiteur anonyme </p>
-<p *ngIf="logged"> Connecté en tant que {{username}} </p>
+<p *ngIf="logged"> Bonjour {{username}} ! </p>
+
+<button mat-stroked-button color="primary" [routerLink]="['/myAuction']"> Mes enchères </button>
+<br/>
+<button mat-stroked-button color="primary" [routerLink]="['/promotions']"> Mes promotions </button>

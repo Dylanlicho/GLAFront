@@ -80,6 +80,9 @@ When logged in, you'll be able to create a new bid. On the bid creation page you
 ### Available bids
 Available bids are listing in the auction page, their endDate is written in red when the date has passed.
 
+### Bidding
+Anyone connected and not owner of the article can bid on it, the highest current bid is shown next to "Prix actuel :". If none, the starting price is displayed instead of the highest bid.
+
 ## Related repositories
 
 The back-end application is located at https://github.com/Dylanlicho/apde-back-spring .

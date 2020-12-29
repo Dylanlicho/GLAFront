@@ -27,6 +27,8 @@ import {CookieService} from 'ngx-cookie-service';
 import { CreateBidComponent } from './create-bid/create-bid.component';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
+import { MyAuctionComponent } from './my-auction/my-auction.component';
+import {ParticipationService} from './shared/services/participation.service';
 
 registerLocaleData(localeFr, 'fr');
 
@@ -39,7 +41,8 @@ registerLocaleData(localeFr, 'fr');
     BidComponent,
     LoginComponent,
     SignupComponent,
-    CreateBidComponent
+    CreateBidComponent,
+    MyAuctionComponent
   ],
   imports: [
     HttpClientModule,
@@ -60,6 +63,7 @@ registerLocaleData(localeFr, 'fr');
   providers: [
     UserService,
     BidService,
+    ParticipationService,
     DatePipe,
     CookieService,
     {provide: LOCALE_ID, useValue: 'fr-FR'}

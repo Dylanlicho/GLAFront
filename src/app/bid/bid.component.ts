@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {merge} from 'rxjs';
 import {filter, mergeMap} from 'rxjs/operators';
 import {BidService} from '../shared/services/bid.service';
 import {Bid} from '../shared/interfaces/bid';
 import {User} from '../shared/interfaces/user';
 import {UserService} from '../shared/services/user.service';
-import {DatePipe} from '@angular/common';
 import {CookieService} from 'ngx-cookie-service';
+import {Participation} from '../shared/interfaces/participation';
+import {ParticipationService} from '../shared/services/participation.service';
 
 @Component({
   selector: 'app-bid',
@@ -18,10 +19,12 @@ export class BidComponent implements OnInit {
 
   private _bid: Bid;
   private _seller: User;
+  private _bestOffer: Participation;
 
-  constructor(private _route: ActivatedRoute, private _bidService: BidService, private _userService: UserService, private _datePipe: DatePipe, private _cookieService: CookieService) {
+  constructor(private _participationService: ParticipationService, private _route: ActivatedRoute, private _bidService: BidService, private _userService: UserService, private _cookieService: CookieService, private _router: Router) {
     this._bid = {} as Bid;
     this._seller = {} as User;
+    this._bestOffer = {} as Participation;
   }
 
   get bid(): Bid {
@@ -32,11 +35,15 @@ export class BidComponent implements OnInit {
     return this._seller;
   }
 
+  get bestOffer(): Participation {
+    return this._bestOffer;
+  }
+
   get isBiddable(): boolean {
     //checks if the bid is open and if the user is not the seller
-    let today = this._datePipe.transform(new Date(), 'short');
-    return today > this._datePipe.transform(this._bid.startDate, 'short') &&
-      today < this._datePipe.transform(this._bid.endDate, 'short') &&
+    let today = new Date();
+    return today.getTime() > (new Date(this._bid.startDate)).getTime() &&
+      today.getTime() < (new Date(this._bid.endDate)).getTime() &&
       !this.isOwner;
   }
 
@@ -48,13 +55,35 @@ export class BidComponent implements OnInit {
   get isEditable(): boolean {
     //returns whether the bid is editable or not
     //a bid is editable after it is ended
-    let today = this._datePipe.transform(new Date(), 'short');
-    return this._datePipe.transform(this._bid.endDate, 'short') < today;
+    let today = new Date();
+    return (new Date(this._bid.endDate)).getTime() < today.getTime();
   }
 
   isExpired(date: Date): boolean {
     let today = new Date();
-    return this._datePipe.transform(date, 'short') < this._datePipe.transform(today, 'short');
+    return (new Date(date)).getTime() < today.getTime();
+  }
+
+  delete(): void {
+    this._bidService.delete(this._bid['id'])
+      .subscribe(
+        () => this._router.navigate(['/auction']),
+        (err) => console.log(err),
+      );
+  }
+
+  place_bidding(price: number): void {
+    let participation = {
+      idUser: JSON.parse(this._cookieService.get("login"))['id'],
+      idArticle: this._bid['id'],
+      price: price
+    } as Participation;
+
+    this._participationService.create(participation)
+      .subscribe(
+        () => this._router.navigate(['auction']),
+        (err) => console.log(err)
+      );
   }
 
   ngOnInit(): void {
@@ -69,6 +98,13 @@ export class BidComponent implements OnInit {
           this._bid = bid;
           this._userService.fetchOne(bid['seller'])
             .subscribe((user: any) => this._seller = user);
+          this._participationService.fetchBest(bid['id'])
+            .subscribe((participation: any) => {
+              if (participation != null)
+                this._bestOffer = participation;
+              else
+                this._bestOffer['price'] = this._bid['startPrice'];
+            });
         },
       );
   }

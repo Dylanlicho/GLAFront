@@ -1,0 +1,35 @@
+<table mat-table [dataSource]="myBids">s
+
+  <ng-container matColumnDef="nom">
+    <th mat-header-cell *matHeaderCellDef> Nom </th>
+    <td mat-cell *matCellDef="let bid"> {{bid['name']}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="prix">
+    <th mat-header-cell *matHeaderCellDef> Prix actuel </th>
+    <td mat-cell *matCellDef="let bid"> {{bid['price']}} € </td>
+  </ng-container>
+
+  <ng-container matColumnDef="dateDepart">
+    <th mat-header-cell *matHeaderCellDef> Départ de l'enchère </th>
+    <td mat-cell *matCellDef="let bid"> {{bid['startDate'] | date:'short'}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="dateFin">
+    <th mat-header-cell *matHeaderCellDef> Fin de l'enchère </th>
+    <td mat-cell *matCellDef="let bid">
+      <div style="color: red" *ngIf="isExpired(bid['endDate'])"> {{bid['endDate'] | date:'short'}} </div>
+      <div *ngIf="!isExpired(bid['endDate'])"> {{bid['endDate'] | date:'short'}} </div>
+    </td>
+  </ng-container>
+
+  <ng-container class="cell-right" matColumnDef="info">
+    <th mat-header-cell *matHeaderCellDef></th>
+    <td class="cell-right" mat-cell *matCellDef="let bid"> <button mat-icon-button [routerLink]="['/bid', bid.id]"><mat-icon>info</mat-icon></button> </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+</table>
+
+<button mat-button [disabled]="!logged()" [routerLink]="['/createBid']"> Nouvelle enchère </button>
