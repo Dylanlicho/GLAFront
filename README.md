@@ -75,7 +75,7 @@ This cookie contains information about the logged-in user, saved as a JSON objec
 - The user can be extracted from the cookie using the *JSON.parse* method
 
 ### Creating a new bid
-When logged in, you'll be able to create a new bid. On the bid creation page you will be able to choose the name, starting price, weight, starting date and ending date of the bid. The 'seller' field of the bid will be automatically filled with your user ID and the 'price' field will be filled with the starting price value.
+When logged in, you'll be able to create a new bid. On the bid creation page you will be able to choose the name, starting price, weight, starting date and ending date of the bid. The 'seller' field of the bid will be automatically filled with your user ID and the 'price' field will be filled with the starting price value. You will also have to select between the existing Categories, it will automatically be linked to you article on creation.
 
 ### Available bids
 Available bids are listing in the auction page, their endDate is written in red when the date has passed.
