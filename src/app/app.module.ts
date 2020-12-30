@@ -29,6 +29,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
 import { MyAuctionComponent } from './my-auction/my-auction.component';
 import {ParticipationService} from './shared/services/participation.service';
+import {CategoryService} from './shared/services/category.service';
 
 registerLocaleData(localeFr, 'fr');
 
@@ -64,6 +65,7 @@ registerLocaleData(localeFr, 'fr');
     UserService,
     BidService,
     ParticipationService,
+    CategoryService,
     DatePipe,
     CookieService,
     {provide: LOCALE_ID, useValue: 'fr-FR'}

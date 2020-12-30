@@ -12,7 +12,16 @@
 
   <mat-form-field appearance="fill">
     <mat-label>Description</mat-label>
-    <input matInput formControlName="description" minlength="2" required/>
+    <textarea matInput formControlName="description" minlength="2" required></textarea>
+  </mat-form-field>
+
+  <br/>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Catégorie</mat-label>
+    <select matNativeControl formControlName="category" required>
+      <option *ngFor="let category of categories" [value]="category['id']">{{category['name']}}</option>
+    </select>
   </mat-form-field>
 
   <br/>
