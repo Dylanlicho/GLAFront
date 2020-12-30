@@ -5,7 +5,9 @@
     <mat-card-content>
       Début : {{bid['startDate'] | date:'short'}} <br/>
       Prix de départ : {{bid['startPrice']}} € <br/>
-      Prix actuel : {{bestOffer['price']}} €
+      Prix actuel : {{bestOffer['price']}} € <br/><br/>
+      Description : <br/>
+      {{bid['description']}}
     </mat-card-content>
     <mat-card-actions >
       <mat-icon *ngIf="isOwner && isEditable">edit</mat-icon>

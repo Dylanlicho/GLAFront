@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Bid} from '../shared/interfaces/bid';
 import {BidService} from '../shared/services/bid.service';
 import {CookieService} from 'ngx-cookie-service';
+import {ParticipationService} from '../shared/services/participation.service';
 
 @Component({
   selector: 'app-auction',
@@ -14,7 +15,7 @@ export class AuctionComponent implements OnInit {
 
   private _bids: Bid[];
 
-  constructor(private _bidService: BidService, private _cookieService: CookieService) {
+  constructor(private _participationService: ParticipationService, private _bidService: BidService, private _cookieService: CookieService) {
     this._bids = [];
   }
 
@@ -29,7 +30,9 @@ export class AuctionComponent implements OnInit {
 
   ngOnInit(): void {
     this._bidService
-      .fetch().subscribe((bids: Bid[]) => this._bids = bids);
+      .fetch().subscribe(
+        (bids: Bid[]) => this._bids = bids
+    );
   }
 
   get bids(): Bid[] {

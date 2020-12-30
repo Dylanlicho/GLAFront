@@ -50,6 +50,9 @@ export class CreateBidComponent implements OnInit {
       name: new FormControl('', Validators.compose([
         Validators.required, Validators.minLength(2)
       ])),
+      description: new FormControl('', Validators.compose([
+        Validators.required, Validators.minLength(2)
+      ])),
       startPrice: new FormControl(.0, Validators.min(.0)),
       startDate: new FormControl(new Date(), Validators.compose([
         Validators.required, Validators.minLength(2)
