@@ -11,6 +11,9 @@
     </mat-card-content>
     <mat-card-actions >
       <mat-icon *ngIf="isOwner && isEditable">edit</mat-icon>
+       <mat-label *ngIf="hasError()">
+         {{_errorMsg}}
+       </mat-label>
       <mat-form-field appearance="fill">
         <mat-label>Enchérir (€)</mat-label>
         <input matInput #price type="number" [min]="bid['price']+1" [disabled]="!isBiddable">

@@ -20,6 +20,8 @@ export class BidComponent implements OnInit {
   private _bid: Bid;
   private _seller: User;
   private _bestOffer: Participation;
+  private _hasError: boolean;
+  private _errorMsg: String;
 
   constructor(private _participationService: ParticipationService, private _route: ActivatedRoute, private _bidService: BidService, private _userService: UserService, private _cookieService: CookieService, private _router: Router) {
     this._bid = {} as Bid;
@@ -64,6 +66,15 @@ export class BidComponent implements OnInit {
     return (new Date(date)).getTime() < today.getTime();
   }
 
+  hasError(): boolean{
+    return this._hasError;
+  }
+
+
+  getErrorMsg(): String{
+    return this._errorMsg;
+  }
+
   delete(): void {
     this._bidService.delete(this._bid['id'])
       .subscribe(
@@ -73,17 +84,22 @@ export class BidComponent implements OnInit {
   }
 
   place_bidding(price: number): void {
-    let participation = {
-      idUser: JSON.parse(this._cookieService.get("login"))['id'],
-      idArticle: this._bid['id'],
-      price: price
-    } as Participation;
+    if (price > this._bestOffer.price) {
+      let participation = {
+        idUser: JSON.parse(this._cookieService.get('login')).id,
+        idArticle: this._bid.id,
+        price
+      } as Participation;
 
-    this._participationService.create(participation)
-      .subscribe(
-        () => this._router.navigate(['auction']),
-        (err) => console.log(err)
-      );
+      this._participationService.create(participation)
+        .subscribe(
+          () => this._router.navigate(['auction']),
+          (err) => console.log(err)
+        );
+    }else{
+      this._hasError = true;
+      this._errorMsg = 'Le prix rentré devrait être plus grand que l\'enchère actuelle';
+    }
   }
 
   ngOnInit(): void {
