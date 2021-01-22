@@ -9,6 +9,7 @@ import {UserService} from '../shared/services/user.service';
 import {CookieService} from 'ngx-cookie-service';
 import {Participation} from '../shared/interfaces/participation';
 import {ParticipationService} from '../shared/services/participation.service';
+import {AuthenticationService} from "../shared/services/authentication.service";
 
 @Component({
   selector: 'app-bid',
@@ -22,8 +23,10 @@ export class BidComponent implements OnInit {
   private _bestOffer: Participation;
   private _hasError: boolean;
   private _errorMsg: String;
+  currentUser: User;
 
-  constructor(private _participationService: ParticipationService, private _route: ActivatedRoute, private _bidService: BidService, private _userService: UserService, private _cookieService: CookieService, private _router: Router) {
+  constructor(private _participationService: ParticipationService, private _route: ActivatedRoute, private _bidService: BidService, private _userService: UserService, private _cookieService: CookieService, private _router: Router, private authenticationService: AuthenticationService) {
+    this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
     this._bid = {} as Bid;
     this._seller = {} as User;
     this._bestOffer = {} as Participation;
@@ -51,7 +54,8 @@ export class BidComponent implements OnInit {
 
   get isOwner(): boolean {
     //returns whether the user is the seller or not
-    return this._cookieService.check("login") && JSON.parse(this._cookieService.get("login"))['id'] == this._seller.id;
+    //return this._cookieService.check("login") && JSON.parse(this._cookieService.get("login"))['id'] == this._seller.id;
+    return this.authenticationService.logged() && this.currentUser.id == this._seller.id;
   }
 
   get isEditable(): boolean {
@@ -86,7 +90,8 @@ export class BidComponent implements OnInit {
   place_bidding(price: number): void {
     if (price > this._bestOffer.price) {
       let participation = {
-        idUser: JSON.parse(this._cookieService.get('login')).id,
+        //idUser: JSON.parse(this._cookieService.get('login')).id,
+        idUser: this.currentUser.id,
         idArticle: this._bid.id,
         price
       } as Participation;

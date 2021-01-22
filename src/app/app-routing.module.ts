@@ -8,9 +8,10 @@ import {LoginComponent} from './login/login.component';
 import {SignupComponent} from './signup/signup.component';
 import {CreateBidComponent} from './create-bid/create-bid.component';
 import {MyAuctionComponent} from './my-auction/my-auction.component';
+import {AuthGuardComponent} from './authentication/auth-guard.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  /*{ path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   { path: 'auction', component: AuctionComponent },
   { path: 'bid/:id', component: BidComponent },
@@ -18,7 +19,18 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'createBid', component: CreateBidComponent },
-  { path: 'myAuction', component: MyAuctionComponent }
+  { path: 'myAuction', component: MyAuctionComponent }*/
+
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: 'login', component: LoginComponent },
+  { path: 'signup', component: SignupComponent },
+  { path: 'home', component: HomeComponent },
+  { path: 'auction', component: AuctionComponent, canActivate: [AuthGuardComponent]},
+  { path: 'bid/:id', component: BidComponent, canActivate: [AuthGuardComponent]},
+  { path: 'promotions', component: PromotionsComponent, canActivate: [AuthGuardComponent] },
+  { path: 'createBid', component: CreateBidComponent, canActivate: [AuthGuardComponent] },
+  { path: 'myAuction', component: MyAuctionComponent, canActivate: [AuthGuardComponent] }
+
 ];
 
 @NgModule({

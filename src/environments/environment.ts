@@ -8,7 +8,7 @@ export const environment = {
       allUsers: '/users',
       oneUser: '/user/:id',
       oneUserByLogin: '/user/login/:login',
-      addUser: '/addUser',
+      addUser: '/auth/register',
 
       allArticles: '/articles',
       allArticlesBySeller: '/article/seller/:seller',
@@ -22,6 +22,8 @@ export const environment = {
       allCategories: '/categories',
 
       addOfCategory: '/addOfCategory',
+
+      login: '/auth/login',
     }
   }
 };

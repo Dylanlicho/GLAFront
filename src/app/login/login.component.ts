@@ -6,6 +6,8 @@ import {CookieService} from 'ngx-cookie-service';
 import {UserService} from '../shared/services/user.service';
 import {User} from '../shared/interfaces/user';
 import {HttpErrorResponse} from '@angular/common/http';
+import {first} from "rxjs/operators";
+import {AuthenticationService} from "../shared/services/authentication.service";
 
 @Component({
   selector: 'app-login',
@@ -17,9 +19,15 @@ export class LoginComponent implements OnInit {
   public hide: boolean = true;
 
   private _form: FormGroup;
+  error = '';
 
-  constructor(private _router: Router, private _cookieService: CookieService, private _userService: UserService) {
+  constructor(private _router: Router, private _cookieService: CookieService, private _userService: UserService, private authenticationService: AuthenticationService) {
     this._form = this._buildForm();
+
+    // redirect to home if already logged in
+    if (this.authenticationService.currentUserValue) {
+      this._router.navigate(['/']);
+    }
   }
 
   get form(): FormGroup {
@@ -60,6 +68,21 @@ export class LoginComponent implements OnInit {
     //COOKIE
     //this._cookieService.set("login", login.login, 300)
     // -> sets a login cookie for 5 minutes containing the name of the connected user
+
+    // stop here if form is invalid
+    if (this._form.invalid) {
+      return;
+    }
+
+    this.authenticationService.login(this._form.controls.login.value, this._form.controls.password.value)
+      .pipe(first())
+      .subscribe(
+        data => {
+          this._router.navigate(['/home']);
+        },
+        error => {
+          this.error = error;
+        });
   }
 
   cancel(): void {

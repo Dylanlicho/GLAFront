@@ -22,6 +22,7 @@
 
   <button mat-stroked-button (click)="cancel()">Annuler</button>
   <button mat-stroked-button color="primary" type="submit" (click)="submit(form.value)">Se connecter</button>
+  <div *ngIf="error" >{{error}}</div>
 </form>
 
 <br/><br/>
