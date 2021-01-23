@@ -3,7 +3,6 @@ import {Bid} from '../shared/interfaces/bid';
 import {BidService} from '../shared/services/bid.service';
 import {CookieService} from 'ngx-cookie-service';
 import {ParticipationService} from '../shared/services/participation.service';
-import {Router} from "@angular/router";
 import {AuthenticationService} from "../shared/services/authentication.service";
 import {User} from "../shared/interfaces/user";
 

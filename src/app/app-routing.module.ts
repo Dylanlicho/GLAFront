@@ -9,6 +9,7 @@ import {SignupComponent} from './signup/signup.component';
 import {CreateBidComponent} from './create-bid/create-bid.component';
 import {MyAuctionComponent} from './my-auction/my-auction.component';
 import {AuthGuardComponent} from './authentication/auth-guard.component';
+import {OrderComponent} from './order/order.component';
 
 const routes: Routes = [
   /*{ path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -29,7 +30,8 @@ const routes: Routes = [
   { path: 'bid/:id', component: BidComponent, canActivate: [AuthGuardComponent]},
   { path: 'promotions', component: PromotionsComponent, canActivate: [AuthGuardComponent] },
   { path: 'createBid', component: CreateBidComponent, canActivate: [AuthGuardComponent] },
-  { path: 'myAuction', component: MyAuctionComponent, canActivate: [AuthGuardComponent] }
+  { path: 'myAuction', component: MyAuctionComponent, canActivate: [AuthGuardComponent] },
+  { path: 'order/:id', component: OrderComponent, canActivate: [AuthGuardComponent] }
 
 ];
 

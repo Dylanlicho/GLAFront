@@ -30,10 +30,10 @@ import {MatNativeDateModule} from '@angular/material/core';
 import { MyAuctionComponent } from './my-auction/my-auction.component';
 import {ParticipationService} from './shared/services/participation.service';
 import {CategoryService} from './shared/services/category.service';
-import { AuthGuardComponent } from './authentication/auth-guard.component';
 import { ErrorInterceptorComponent } from './authentication/error-interceptor.component';
 import { JwtInterceptorComponent } from './authentication/jwt-interceptor.component';
-import { AuthenticationService } from './shared/services/authentication.service';
+import { OrderComponent } from './order/order.component';
+import {DeliveryService} from './shared/services/delivery.service';
 registerLocaleData(localeFr, 'fr');
 
 @NgModule({
@@ -47,6 +47,7 @@ registerLocaleData(localeFr, 'fr');
     SignupComponent,
     CreateBidComponent,
     MyAuctionComponent,
+    OrderComponent,
   ],
   imports: [
     HttpClientModule,
@@ -71,6 +72,7 @@ registerLocaleData(localeFr, 'fr');
     CategoryService,
     DatePipe,
     CookieService,
+    DeliveryService,
     {provide: LOCALE_ID, useValue: 'fr-FR'},
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptorComponent, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptorComponent, multi: true },

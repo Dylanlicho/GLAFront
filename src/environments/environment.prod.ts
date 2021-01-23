@@ -22,6 +22,10 @@ export const environment = {
       allCategories: '/categories',
 
       addOfCategory: '/addOfCategory',
+
+      login: '/auth/login',
+
+      addDelivery: '/addDelivery'
     }
   }
 };

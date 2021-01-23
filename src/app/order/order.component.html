@@ -1,0 +1,17 @@
+<p>Félicitations, vous avez remporté l'enchère pour l'objet : <b>{{bid['name']}}</b> !</p>
+
+<form [formGroup]="form">
+  <mat-label>Indiquez l'adresse de livraison s'il vous plaît :</mat-label>
+
+  <br/><br/>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Adresse</mat-label>
+    <input matInput formControlName="address" minlength="2" required/>
+  </mat-form-field>
+
+  <br/>
+
+  <button mat-stroked-button type="button" (click)="cancel()">Annuler</button>
+  <button mat-stroked-button color="primary" type="submit" (click)="submit(form.value)">Commander</button>
+</form>

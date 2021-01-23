@@ -24,6 +24,8 @@ export const environment = {
       addOfCategory: '/addOfCategory',
 
       login: '/auth/login',
+
+      addDelivery: '/addDelivery'
     }
   }
 };

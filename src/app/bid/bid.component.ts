@@ -23,6 +23,7 @@ export class BidComponent implements OnInit {
   private _bestOffer: Participation;
   private _hasError: boolean;
   private _errorMsg: String;
+  private _isBestBidder: boolean;
   currentUser: User;
 
   constructor(private _participationService: ParticipationService, private _route: ActivatedRoute, private _bidService: BidService, private _userService: UserService, private _cookieService: CookieService, private _router: Router, private authenticationService: AuthenticationService) {
@@ -30,6 +31,7 @@ export class BidComponent implements OnInit {
     this._bid = {} as Bid;
     this._seller = {} as User;
     this._bestOffer = {} as Participation;
+    this._isBestBidder = false;
   }
 
   get bid(): Bid {
@@ -65,6 +67,10 @@ export class BidComponent implements OnInit {
     return (new Date(this._bid.endDate)).getTime() < today.getTime();
   }
 
+  get isBestBidder(): boolean {
+    return this._isBestBidder;
+  }
+
   isExpired(date: Date): boolean {
     let today = new Date();
     return (new Date(date)).getTime() < today.getTime();
@@ -73,7 +79,6 @@ export class BidComponent implements OnInit {
   hasError(): boolean{
     return this._hasError;
   }
-
 
   getErrorMsg(): String{
     return this._errorMsg;
@@ -120,11 +125,14 @@ export class BidComponent implements OnInit {
           this._userService.fetchOne(bid['seller'])
             .subscribe((user: any) => this._seller = user);
           this._participationService.fetchBest(bid['id'])
-            .subscribe((participation: any) => {
-              if (participation != null)
+            .subscribe((participation: Participation) => {
+              if (participation != undefined) {
                 this._bestOffer = participation;
-              else
+              } else {
                 this._bestOffer['price'] = this._bid['startPrice'];
+                this._bestOffer['idUser'] = -1;
+              }
+              this._isBestBidder = this._bestOffer['idUser'] == this.currentUser.id;
             });
         },
       );

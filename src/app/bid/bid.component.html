@@ -24,6 +24,9 @@
       <button mat-icon-button *ngIf="isOwner" (click)="delete()">
         <mat-icon>delete</mat-icon>
       </button>
+      <button mat-icon-button [disabled]="!isExpired(bid['endDate']) || !isBestBidder" [routerLink]="['/order', bid['id']]">
+        <mat-icon>markunread_mailbox</mat-icon>
+      </button>
     </mat-card-actions>
     <mat-card-footer>
       <div style="color: red" *ngIf="isExpired(bid['endDate'])"> Fin : {{bid['endDate'] | date:'short'}} </div>
