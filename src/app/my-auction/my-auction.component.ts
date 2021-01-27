@@ -42,18 +42,21 @@ export class MyAuctionComponent implements OnInit {
         .fetchBySeller(this.currentUser.id)
         .subscribe((bids: Bid[]) => {
           this._myBids = bids;
-          console.log(this._myBids);
-          for (let i = 0; i < this._myBids.length; i++) {
-            this._participationService.fetchBest(this._myBids[i]['id']).subscribe((participation: Participation) => {
-              if (participation != undefined) {
-                this._bestOffer[i] = participation;
+          console.log(bids);
+          for (let i = 0; i < bids.length; i++) {
+            this._participationService.fetchBest(bids[i]['id'])
+              .subscribe((participation: Participation) => {
+                if (participation != undefined) {
+                  this._bestOffer[i] = participation;
+                }else{
+                  let defaut = {} as Participation;
+                  this._bestOffer[i] = defaut;
+                  this._bestOffer[i]['price'] = this._myBids[i]['startPrice'];
+                  this._bestOffer[i]['idUser'] = -1;
+                }
                 console.log(this._bestOffer[i]);
-              } else {
-                this._bestOffer[i]['price'] = this._myBids[i]['startPrice'];
-                this._bestOffer[i]['idUser'] = -1;
-
-              }
-            });
+                console.log(i);
+              });
           }
         });
     else
@@ -66,6 +69,35 @@ export class MyAuctionComponent implements OnInit {
 
   get bestOffer(): Participation[] {
     return this._bestOffer;
+  }
+
+  fillParticipation(): void{
+    for (let i = 0; i < this._myBids.length; i++) {
+      this._participationService.fetchBest(this._myBids[i]['id'])
+        .subscribe((participation: Participation) => {
+        if (participation != undefined) {
+          this._bestOffer[i] = participation;
+        } else {
+          this._bestOffer[i]['price'] = this._myBids[i]['startPrice'];
+          this._bestOffer[i]['idUser'] = -1;
+        }
+        console.log(this._bestOffer["price"]);
+      });
+    }
+  }
+
+  private _addBestBidder() {
+    for(let i = 0; i != this._myBids.length; i++) {
+      this._participationService.fetchBest(this._myBids[i].id)
+        .subscribe((tmp: Participation) => {
+          if (tmp != undefined) {
+            this._bestOffer[i] = tmp;
+          } else {
+            this._bestOffer[i]['price'] = this._myBids[i]['startPrice'];
+            this._bestOffer[i]['idUser'] = -1;
+          }
+        });
+    }
   }
 
 }
