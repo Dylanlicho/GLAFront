@@ -55,6 +55,14 @@ export class BidService {
       );
   }
 
+  fetchParticipationUser(id: number): Observable<Bid[]>{
+    return this._http.get<Bid[]>(this._backendURL.participationOf.replace(':id', id))
+    .pipe(
+      filter(_ => !!_),
+      defaultIfEmpty([])
+    );
+  }
+
   private _options(headerList: object = {}): any {
     return { headers: new HttpHeaders(Object.assign({ 'Content-Type': 'application/json' }, headerList)) };
   }

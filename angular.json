@@ -122,5 +122,8 @@
       }
     }
   },
-  "defaultProject": "GLAFront"
+  "defaultProject": "GLAFront",
+  "cli": {
+    "analytics": false
+  }
 }

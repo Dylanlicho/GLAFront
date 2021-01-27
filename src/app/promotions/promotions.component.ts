@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {PromotionService} from '../shared/services/promotion.service';
+import {Promotion} from '../shared/interfaces/promotion';
 
 @Component({
   selector: 'app-promotions',
@@ -7,9 +9,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PromotionsComponent implements OnInit {
 
-  constructor() { }
+  private _promotions: Promotion[];
+  private _displayedColumns: string[] = ['nom', 'reduction', 'description', 'info'];
+  constructor(private readonly _promotionService: PromotionService) { }
 
   ngOnInit(): void {
+    this._promotionService.fetch().subscribe(
+      (_: Promotion[]) => this._promotions = _,
+    );
   }
 
+  get promotions(): Promotion[]{
+    return this._promotions;
+  }
+
+  get displayedColumns(): string[]{
+    return this._displayedColumns;
+  }
 }

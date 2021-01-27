@@ -34,6 +34,8 @@ import { ErrorInterceptorComponent } from './authentication/error-interceptor.co
 import { JwtInterceptorComponent } from './authentication/jwt-interceptor.component';
 import { OrderComponent } from './order/order.component';
 import {DeliveryService} from './shared/services/delivery.service';
+import {MatTooltipModule} from '@angular/material/tooltip';
+import { ParticipationComponent } from './participation/participation.component';
 registerLocaleData(localeFr, 'fr');
 
 @NgModule({
@@ -48,6 +50,7 @@ registerLocaleData(localeFr, 'fr');
     CreateBidComponent,
     MyAuctionComponent,
     OrderComponent,
+    ParticipationComponent,
   ],
   imports: [
     HttpClientModule,
@@ -61,6 +64,7 @@ registerLocaleData(localeFr, 'fr');
     MatIconModule,
     MatToolbarModule,
     MatTableModule,
+    MatTooltipModule,
     ReactiveFormsModule,
     MatDatepickerModule,
     MatNativeDateModule,

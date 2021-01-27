@@ -1,5 +1,4 @@
 <form [formGroup]="form">
-  <mat-label>Connexion</mat-label>
 
   <br/><br/>
 
@@ -24,10 +23,3 @@
   <button mat-stroked-button color="primary" type="submit" (click)="submit(form.value)">Se connecter</button>
   <div *ngIf="error" >{{error}}</div>
 </form>
-
-<br/><br/>
-
-<p> -- TEST </p>
-
-<input #logintest type="text" name="login"/>
-<button (click)="cookieTest(logintest.value)">SET COOKIE</button>

@@ -1,6 +1,10 @@
 <p *ngIf="!logged"> Vous êtes un visiteur anonyme </p>
 <p *ngIf="logged"> Bonjour {{username}} ! </p>
 
-<button mat-stroked-button color="primary" [routerLink]="['/myAuction']"> Mes enchères </button>
+<button mat-stroked-button color="primary" [routerLink]="['/promotions']"> Les promotions </button>
+
 <br/>
-<button mat-stroked-button color="primary" [routerLink]="['/promotions']"> Mes promotions </button>
+<button mat-stroked-button color="primary" [routerLink]="['/myAuctgit ion']"> Vos enchères </button>
+<br />
+<button mat-stroked-button color="primary" [routerLink]="['/participation']"> Vos participations </button>
+

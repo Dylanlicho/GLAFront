@@ -10,6 +10,7 @@ import {CreateBidComponent} from './create-bid/create-bid.component';
 import {MyAuctionComponent} from './my-auction/my-auction.component';
 import {AuthGuardComponent} from './authentication/auth-guard.component';
 import {OrderComponent} from './order/order.component';
+import {ParticipationComponent} from './participation/participation.component';
 
 const routes: Routes = [
   /*{ path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -31,7 +32,8 @@ const routes: Routes = [
   { path: 'promotions', component: PromotionsComponent, canActivate: [AuthGuardComponent] },
   { path: 'createBid', component: CreateBidComponent, canActivate: [AuthGuardComponent] },
   { path: 'myAuction', component: MyAuctionComponent, canActivate: [AuthGuardComponent] },
-  { path: 'order/:id', component: OrderComponent, canActivate: [AuthGuardComponent] }
+  { path: 'participation', component: ParticipationComponent, canActivate: [AuthGuardComponent] },
+  { path: 'order/:id', component: OrderComponent, canActivate: [AuthGuardComponent] },
 
 ];
 

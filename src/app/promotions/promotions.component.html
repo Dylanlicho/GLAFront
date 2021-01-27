@@ -1,11 +1,27 @@
-Les promos et tout t'as vu
-<mat-grid-list cols="3" rowHeight="3:1">
-  <mat-grid-tile> Une promo t'as vu </mat-grid-tile>
-  <mat-grid-tile> Une autre promo t'as vu </mat-grid-tile>
-  <mat-grid-tile> Encure une autre promo t'as vu </mat-grid-tile>
-  <mat-grid-tile> Euhh.. t'as vu </mat-grid-tile>
-  <mat-grid-tile> Je commence à en voir trop d'ailleurs </mat-grid-tile>
-  <mat-grid-tile> Oskur </mat-grid-tile>
-  <mat-grid-tile> SEND HALP </mat-grid-tile>
-  <mat-grid-tile> me ded </mat-grid-tile>
-</mat-grid-list>
+<table mat-table [dataSource]="promotions">
+
+  <ng-container matColumnDef="nom">
+    <th mat-header-cell *matHeaderCellDef> Nom </th>
+    <td mat-cell *matCellDef="let promo"> {{promo.article.name}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="reduction">
+    <th mat-header-cell *matHeaderCellDef> Reduction </th>
+    <td mat-cell *matCellDef="let promo"> {{promo.reduction}} % </td>
+  </ng-container>
+
+  <ng-container matColumnDef="description">
+    <th mat-header-cell *matHeaderCellDef> Description </th>
+    <td mat-cell *matCellDef="let promo">
+      {{promo.article.description}}
+    </td>
+  </ng-container>
+
+  <ng-container class="cell-right" matColumnDef="info">
+    <th mat-header-cell *matHeaderCellDef></th>
+    <td class="cell-right" mat-cell *matCellDef="let bid"> <button mat-icon-button [routerLink]="['/bid', bid.article.id]"><mat-icon>info</mat-icon></button> </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+</table>

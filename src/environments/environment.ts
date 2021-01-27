@@ -18,14 +18,16 @@ export const environment = {
 
       createParticipation: '/addParticipation',
       bestParticipationByIdArticle: '/participation/best/:idArticle',
-
+      participationOf: '/participation/user/:id',
       allCategories: '/categories',
 
       addOfCategory: '/addOfCategory',
 
       login: '/auth/login',
 
-      addDelivery: '/addDelivery'
+      addDelivery: '/addDelivery',
+
+      allPromotions: '/promotions'
     }
   }
 };

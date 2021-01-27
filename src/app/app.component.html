@@ -5,27 +5,33 @@
 
   <span class="example-spacer"></span>
 
-  <button mat-icon-button aria-label="Accueil" [routerLink]="['/home']">
+  <button mat-icon-button aria-label="Accueil" [routerLink]="['/home']"
+          matTooltip="home">
     <mat-icon>home</mat-icon>
   </button>
 
-  <button mat-icon-button aria-label="Enchères" [routerLink]="['/auction']">
+  <button mat-icon-button aria-label="Enchères" *ngIf="logged" [routerLink]="['/auction']"
+          matTooltip="What you sell">
     <mat-icon>attach_money</mat-icon>
   </button>
 
-  <button mat-icon-button aria-label="Promotions" [routerLink]="['/promotions']">
+  <button mat-icon-button aria-label="Promotions" [routerLink]="['/promotions']"
+          matTooltip="What's in promotion">
     <mat-icon>new_releases</mat-icon>
   </button>
 
-  <button mat-icon-button aria-label="Connexion" *ngIf="!logged" [routerLink]="['/login']">
+  <button mat-icon-button aria-label="Connexion" *ngIf="!logged" [routerLink]="['/login']"
+          matTooltip="Login">
     <mat-icon>login</mat-icon>
   </button>
 
-  <button mat-icon-button aria-label="Déconnexion" *ngIf="logged" (click)="disconnect()">
+  <button mat-icon-button aria-label="Déconnexion" *ngIf="logged" (click)="disconnect()"
+          matTooltip="Logout">
     <mat-icon>person_off</mat-icon>
   </button>
 
-  <button mat-icon-button aria-label="Inscription" *ngIf="!logged" [routerLink]="['/signup']">
+  <button mat-icon-button aria-label="Inscription" *ngIf="!logged" [routerLink]="['/signup']"
+          matTooltip="Sign up !">
     <mat-icon>person_add_alt_1</mat-icon>
   </button>
 </mat-toolbar>
