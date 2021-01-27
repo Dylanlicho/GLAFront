@@ -1,0 +1,31 @@
+<table mat-table [dataSource]="deliveries">
+
+  <ng-container matColumnDef="date">
+    <th mat-header-cell *matHeaderCellDef> Date de commande </th>
+    <td mat-cell *matCellDef="let del"> {{del.date}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="nomArticle">
+    <th mat-header-cell *matHeaderCellDef> nom de l'objet </th>
+    <td mat-cell *matCellDef="let del">
+      {{del.nameArticle}}
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="address">
+    <th mat-header-cell *matHeaderCellDef>Adresse de livraison </th>
+    <td mat-cell *matCellDef="let del">
+      {{del.address}}
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="status">
+    <th mat-header-cell *matHeaderCellDef> Status de la livraison </th>
+    <td mat-cell *matCellDef="let del">
+      En cours
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+</table>

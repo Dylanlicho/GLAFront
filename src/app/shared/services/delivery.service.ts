@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import {Observable} from 'rxjs';
+import {Category} from '../interfaces/category';
+import {Delivery} from '../interfaces/delivery';
 
 @Injectable({
   providedIn: 'root'
@@ -24,6 +26,10 @@ export class DeliveryService {
 
   create(order: string): Observable<any> {
     return this._http.post<string>(this._backendURL.addDelivery, order, this._options());
+  }
+
+  fetchById(id: number): Observable<Delivery[]> {
+    return this._http.get<Delivery[]>(this._backendURL.getDeliveryUser.replace(':id', id));
   }
 
   private _options(headerList: object = {}): any {

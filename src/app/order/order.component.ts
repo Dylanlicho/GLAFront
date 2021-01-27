@@ -6,7 +6,7 @@ import {BidService} from '../shared/services/bid.service';
 import {Bid} from '../shared/interfaces/bid';
 import {AuthenticationService} from '../shared/services/authentication.service';
 import {User} from '../shared/interfaces/user';
-import {Order} from '../shared/interfaces/order';
+import {Delivery} from '../shared/interfaces/delivery';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {formatDate} from '@angular/common';
 import {DeliveryService} from '../shared/services/delivery.service';
@@ -41,8 +41,10 @@ export class OrderComponent implements OnInit {
     this._router.navigate(['/home']);
   }
 
-  submit(order: Order) {
-    order['buyer'] = this._user.id + '';
+  submit(order: Delivery) {
+    order.idArticle = this._bid.id;
+    order['buyer'] = this._user.id;
+    order['nameArticle'] = this._bid.name;
     order['date'] = formatDate(new Date(), 'y-MM-dd h:mm:ss', 'en');
 
     //debug

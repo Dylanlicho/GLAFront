@@ -1,0 +1,12 @@
+table {
+  width: 100%;
+}
+
+.mat-cell:nth-child(5),
+.mat-header-cell:nth-child(5) {
+  width: 40px;
+}
+
+.cell-right {
+  text-align: right;
+}

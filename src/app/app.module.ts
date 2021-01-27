@@ -37,6 +37,7 @@ import {DeliveryService} from './shared/services/delivery.service';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import { ParticipationComponent } from './participation/participation.component';
 import { SearchAuctionComponent } from './search-auction/search-auction.component';
+import { DeliveryComponent } from './livraison/delivery.component';
 registerLocaleData(localeFr, 'fr');
 
 @NgModule({
@@ -53,6 +54,7 @@ registerLocaleData(localeFr, 'fr');
     OrderComponent,
     ParticipationComponent,
     SearchAuctionComponent,
+    DeliveryComponent,
   ],
   imports: [
     HttpClientModule,

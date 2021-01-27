@@ -28,7 +28,7 @@ export const environment = {
       login: '/auth/login',
 
       addDelivery: '/addDelivery',
-
+      getDeliveryUser: '/delivery/:id',
       allPromotions: '/promotions'
     }
   }

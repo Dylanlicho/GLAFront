@@ -12,6 +12,7 @@ import {AuthGuardComponent} from './authentication/auth-guard.component';
 import {OrderComponent} from './order/order.component';
 import {ParticipationComponent} from './participation/participation.component';
 import {SearchAuctionComponent} from "./search-auction/search-auction.component";
+import {DeliveryComponent} from './livraison/delivery.component';
 
 const routes: Routes = [
   /*{ path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -36,6 +37,7 @@ const routes: Routes = [
   { path: 'participation', component: ParticipationComponent, canActivate: [AuthGuardComponent] },
   { path: 'order/:id', component: OrderComponent, canActivate: [AuthGuardComponent] },
   { path: 'search', component: SearchAuctionComponent, canActivate: [AuthGuardComponent] },
+  { path: 'delivery', component: DeliveryComponent, canActivate: [AuthGuardComponent]}
 
 ];
 
