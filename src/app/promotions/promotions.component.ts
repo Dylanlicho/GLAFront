@@ -33,11 +33,10 @@ export class PromotionsComponent implements OnInit {
     for(let i = 0; i != this._promotions.length; i++) {
       this._participationService.fetchBest(this._promotions[i].article.id)
         .subscribe((tmp: Participation | null) => {
-            console.log("here");
             if (tmp && tmp.price)
-              this._promotions[i].best = tmp.price;
+              this._promotions[i]['best'] = tmp.price;
             else
-              this._promotions[i].best = this._promotions[i].article.startPrice;
+              this._promotions[i]['best'] = this._promotions[i].article.startPrice;
           }
         );
     }

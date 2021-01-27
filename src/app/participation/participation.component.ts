@@ -47,10 +47,10 @@ export class ParticipationComponent implements OnInit {
     for(let i = 0; i != this._bids.length; i++)
       this._participationService.fetchBest(this._bids[i].id)
         .subscribe((tmp: Participation) => {
-          this._bids[i].won = false;
-          this._bids[i].best = tmp.price;
+          this._bids[i]['won'] = false;
+          this._bids[i]['best'] = tmp.price;
             if (tmp.idUser == this._currentUser.id)
-              this._bids[i].won = true;
+              this._bids[i]['won'] = true;
           }
         );
   }
