@@ -13,7 +13,7 @@ export class HomeComponent implements OnInit {
   private readonly _username: string;
   currentUser: User;
 
-  constructor(private _cookieService: CookieService, private authenticationService: AuthenticationService) {
+  constructor( private authenticationService: AuthenticationService) {
     this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
     if (this.logged)
       this._username = this.currentUser.login;
@@ -22,7 +22,6 @@ export class HomeComponent implements OnInit {
   }
 
   get logged(): boolean {
-    //return this._cookieService.check("login");
     return this.authenticationService.logged();
   }
 

@@ -18,7 +18,7 @@ export class AuctionComponent implements OnInit {
 
   private _bids: Bid[];
 
-  constructor(private _participationService: ParticipationService, private _bidService: BidService, private _cookieService: CookieService, private authenticationService: AuthenticationService) {
+  constructor(private _participationService: ParticipationService, private _bidService: BidService, private authenticationService: AuthenticationService) {
     this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
     this._bids = [];
   }
@@ -29,7 +29,6 @@ export class AuctionComponent implements OnInit {
   }
 
   logged(): boolean {
-    //return this._cookieService.check("login");
     return this.authenticationService.logged();
   }
 

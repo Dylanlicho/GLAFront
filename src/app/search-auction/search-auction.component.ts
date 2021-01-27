@@ -1,17 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import {Bid} from '../shared/interfaces/bid';
-import {BidService} from '../shared/services/bid.service';
-import {CookieService} from 'ngx-cookie-service';
-import {Router} from '@angular/router';
-import {AuthenticationService} from "../shared/services/authentication.service";
 import {User} from "../shared/interfaces/user";
+import {Bid} from "../shared/interfaces/bid";
+import {BidService} from "../shared/services/bid.service";
+import {Router} from "@angular/router";
+import {AuthenticationService} from "../shared/services/authentication.service";
 
 @Component({
-  selector: 'app-my-auction',
-  templateUrl: './my-auction.component.html',
-  styleUrls: ['./my-auction.component.css']
+  selector: 'app-search-auction',
+  templateUrl: './search-auction.component.html',
+  styleUrls: ['./search-auction.component.css']
 })
-export class MyAuctionComponent implements OnInit {
+export class SearchAuctionComponent implements OnInit {
 
   displayedColumns: string[] = ['nom', 'prix', 'dateDepart', 'dateFin', 'info'];
   currentUser: User;
@@ -43,6 +42,12 @@ export class MyAuctionComponent implements OnInit {
 
   get myBids(): Bid[] {
     return this._myBids;
+  }
+
+  searchByName(nameArticle): void {
+    this._bidService
+      .fetchByName(nameArticle)
+      .subscribe((bids: Bid[]) => this._myBids = bids);
   }
 
 }

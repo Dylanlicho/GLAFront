@@ -12,6 +12,8 @@ export const environment = {
 
       allArticles: '/articles',
       allArticlesBySeller: '/article/seller/:seller',
+      allArticlesByName: '/article/name/:name',
+      allArticlesByCategory: '/article/category/:category',
       oneArticle: '/article/:id',
       addArticle: '/addArticle',
       deleteArticle: '/deleteArticleById/:id',

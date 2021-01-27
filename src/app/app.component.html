@@ -10,6 +10,11 @@
     <mat-icon>home</mat-icon>
   </button>
 
+  <button mat-icon-button aria-label="Search" *ngIf="logged" [routerLink]="['/search']"
+          matTooltip="Search an auction">
+    <mat-icon>find_in_page</mat-icon>
+  </button>
+
   <button mat-icon-button aria-label="Enchères" *ngIf="logged" [routerLink]="['/auction']"
           matTooltip="What you sell">
     <mat-icon>attach_money</mat-icon>

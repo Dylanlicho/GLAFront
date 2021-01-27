@@ -40,6 +40,14 @@ export class BidService {
     return this._http.get<Bid[]>(this._backendURL.allArticlesBySeller.replace(':seller', seller));
   }
 
+  fetchByName(name: string): Observable<Bid[]> {
+    return this._http.get<Bid[]>(this._backendURL.allArticlesByName.replace(':name', name));
+  }
+
+  fetchByCategory(category: string): Observable<Bid[]> {
+    return this._http.get<Bid[]>(this._backendURL.allArticlesByCategory.replace(':category', category));
+  }
+
   create(bid: Bid): Observable<any> {
     return this._http.post<Bid>(this._backendURL.addArticle, bid, this._options());
   }

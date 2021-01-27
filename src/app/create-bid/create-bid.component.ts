@@ -23,7 +23,7 @@ export class CreateBidComponent implements OnInit {
   private _categories: Category[];
   currentUser: User;
 
-  constructor(private _ofCategoryService: OfCategoryService, private _categoryService: CategoryService, private _router: Router, private _bidService: BidService, private _cookieService: CookieService, private authenticationService: AuthenticationService) {
+  constructor(private _ofCategoryService: OfCategoryService, private _categoryService: CategoryService, private _router: Router, private _bidService: BidService, private authenticationService: AuthenticationService) {
     this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
     this._form = this._buildForm();
     this._categories = [] as Category[];
@@ -46,7 +46,6 @@ export class CreateBidComponent implements OnInit {
   }
 
   submit(bid: Bid): void {
-    //bid['seller'] = JSON.parse(this._cookieService.get("login"))['id'];
     bid['seller'] = this.currentUser.id;
     bid['price'] = bid['startPrice'];
 

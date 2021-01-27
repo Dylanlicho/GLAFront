@@ -11,6 +11,7 @@ import {MyAuctionComponent} from './my-auction/my-auction.component';
 import {AuthGuardComponent} from './authentication/auth-guard.component';
 import {OrderComponent} from './order/order.component';
 import {ParticipationComponent} from './participation/participation.component';
+import {SearchAuctionComponent} from "./search-auction/search-auction.component";
 
 const routes: Routes = [
   /*{ path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -34,6 +35,7 @@ const routes: Routes = [
   { path: 'myAuction', component: MyAuctionComponent, canActivate: [AuthGuardComponent] },
   { path: 'participation', component: ParticipationComponent, canActivate: [AuthGuardComponent] },
   { path: 'order/:id', component: OrderComponent, canActivate: [AuthGuardComponent] },
+  { path: 'search', component: SearchAuctionComponent, canActivate: [AuthGuardComponent] },
 
 ];
 

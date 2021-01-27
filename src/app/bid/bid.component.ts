@@ -26,7 +26,7 @@ export class BidComponent implements OnInit {
   private _isBestBidder: boolean;
   currentUser: User;
 
-  constructor(private _participationService: ParticipationService, private _route: ActivatedRoute, private _bidService: BidService, private _userService: UserService, private _cookieService: CookieService, private _router: Router, private authenticationService: AuthenticationService) {
+  constructor(private _participationService: ParticipationService, private _route: ActivatedRoute, private _bidService: BidService, private _userService: UserService, private _router: Router, private authenticationService: AuthenticationService) {
     this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
     this._bid = {} as Bid;
     this._seller = {} as User;
@@ -56,7 +56,6 @@ export class BidComponent implements OnInit {
 
   get isOwner(): boolean {
     //returns whether the user is the seller or not
-    //return this._cookieService.check("login") && JSON.parse(this._cookieService.get("login"))['id'] == this._seller.id;
     return this.authenticationService.logged() && this.currentUser.id == this._seller.id;
   }
 
@@ -95,7 +94,6 @@ export class BidComponent implements OnInit {
   place_bidding(price: number): void {
     if (price > this._bestOffer.price) {
       let participation = {
-        //idUser: JSON.parse(this._cookieService.get('login')).id,
         idUser: this.currentUser.id,
         idArticle: this._bid.id,
         price

@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
   private _form: FormGroup;
   error = '';
 
-  constructor(private _router: Router, private _cookieService: CookieService, private _userService: UserService, private authenticationService: AuthenticationService) {
+  constructor(private _router: Router, private _userService: UserService, private authenticationService: AuthenticationService) {
     this._form = this._buildForm();
 
     // redirect to home if already logged in
@@ -37,38 +37,7 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  cookieTest(login: string): void {
-    if (this._cookieService.check("login"))
-      this._cookieService.delete("login");
-
-    this._userService.fetchOneByLogin(login)
-      .subscribe(
-        (user: User) => {
-          if (!!user) {
-            this._cookieService.set("login", JSON.stringify(user), 300);
-            this._router.navigate(['/home']);
-          }
-        }, (err: HttpErrorResponse) => {
-          console.log(err);
-        }
-      )
-  }
-
   submit(login: Login): void {
-    //PARAMETER
-    //login :
-    // login: string
-    // password: string
-
-    //BEHAVIOR
-    //manage login here I guess, thought about finding if (login, password) exists in DB and if so, set the cookie
-    // () => _router.navigate(['/home']);
-    // (err) => console.log(err);
-
-    //COOKIE
-    //this._cookieService.set("login", login.login, 300)
-    // -> sets a login cookie for 5 minutes containing the name of the connected user
-
     // stop here if form is invalid
     if (this._form.invalid) {
       return;
