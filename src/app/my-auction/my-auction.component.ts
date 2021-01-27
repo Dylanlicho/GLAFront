@@ -42,6 +42,7 @@ export class MyAuctionComponent implements OnInit {
         .fetchBySeller(this.currentUser.id)
         .subscribe((bids: Bid[]) => {
           this._myBids = bids;
+          console.log(this._myBids);
           for (let i = 0; i < this._myBids.length; i++) {
             this._participationService.fetchBest(this._myBids[i]['id']).subscribe((participation: Participation) => {
               if (participation != undefined) {
@@ -51,7 +52,6 @@ export class MyAuctionComponent implements OnInit {
                 this._bestOffer[i]['price'] = this._myBids[i]['startPrice'];
                 this._bestOffer[i]['idUser'] = -1;
 
-                console.log(this._bestOffer[i]);
               }
             });
           }

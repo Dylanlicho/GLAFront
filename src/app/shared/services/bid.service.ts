@@ -37,6 +37,8 @@ export class BidService {
   }
 
   fetchBySeller(seller: number): Observable<Bid[]> {
+    console.log(seller);
+    console.log(this._backendURL.allArticlesBySeller);
     return this._http.get<Bid[]>(this._backendURL.allArticlesBySeller.replace(':seller', seller));
   }
 
